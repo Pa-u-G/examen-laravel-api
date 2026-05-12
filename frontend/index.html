@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid + Flex + Clamp + auto-fit | Demo</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Envolvemos todo en un contenedor con Grid -->
+    <div class="app-grid">
+        <!-- Header con Flex -->
+        <header class="header-flex">
+            <h1 class="titulo-fluido">Panel de productos</h1>
+            <button id="boton" class="btn-moderno">Cargar productos</button>
+        </header>
+
+        <!-- Main: tabla + demo de auto-fit/minmax -->
+        <main class="main-content">
+            <!-- Tabla original, intacta -->
+            <div class="tabla-wrapper">
+                <table id="tabla">
+                    <!-- JS llena esto -->
+                </table>
+            </div>
+
+            <!-- SECCIÓN EXTRA para demostrar auto-fit + minmax (no interfiere con el JS) -->
+            <section class="demo-auto-fit">
+                <h2 class="demo-titulo">Técnicas aplicadas</h2>
+                <div class="tarjetas-grid">
+                    <div class="card"><strong>Grid + auto-fit</strong><br>Columnas flexibles con <code>minmax(220px,1fr)</code></div>
+                    <div class="card"><strong>clamp()</strong><br>Tipografía y paddings fluidos</div>
+                    <div class="card"><strong>Flexbox</strong><br>Header responsivo con wrap y gap</div>
+                    <div class="card"><strong>minmax()</strong><br>Límites inteligentes en columnas</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
