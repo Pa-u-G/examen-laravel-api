@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Producto;
+use App\Models\User;
+use App\Models\Proyecto;
 
 
 class test extends Controller
@@ -35,27 +37,32 @@ class test extends Controller
         return response()->json($producto, Response::HTTP_OK);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function getUserId(Request $request)
     {
-        //
-    }
+        $user = User::where('email', $request["email"])->first();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return response()->json($user, Response::HTTP_OK);   
     }
+    
+    public function create_p(Request $request) {
+        
+        
+        $validated = $request->validate([
+            "nombre" => "required",
+            "desc" => "required",
+            "f_ini" => "required",
+            "f_end" => "required",
+            "user" => "required"
+        ]);
+        
+        Proyecto::create($validated);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+        return response()->json($request, Response::HTTP_OK);   
+    }
+    
+    public function proyectos(Request $request)
     {
-        //
+        $p = Proyecto::where("user", $request["id"])->get();
+        return response()->json($p, Response::HTTP_OK); 
     }
 }

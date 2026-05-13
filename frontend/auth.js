@@ -22,7 +22,14 @@
         if (!res.ok) {
             localStorage.removeItem('api_token');
             window.location.href = './login.html';
+            return;
         }
+
+        const user = await res.json();
+        // Exponer el usuario a la página y actualizar UI si existe el contenedor
+        window.currentUser = user;
+        const info = document.getElementById('userInfo');
+        if (info) info.textContent = `Usuario: ${user.name} (id: ${user.id})`;
     } catch (err) {
         console.error('Error comprobando token', err);
         localStorage.removeItem('api_token');

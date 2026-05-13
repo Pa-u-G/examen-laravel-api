@@ -19,6 +19,14 @@ use App\Http\Controllers\AuthController;
 Route::get('/test', [test::class, 'index']);
 
 Route::post('/save', [test::class, 'store']);
+
+Route::post('/userid', [test::class, 'getUserId']);
+
+Route::post('/create_p', [test::class, 'create_p']);
+
+Route::post('/proyectos', [test::class, 'proyectos']);
+
+
 Route::post('/login', [AuthController::class, 'login']);
 // Route protected with Sanctum - returns the authenticated user
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
