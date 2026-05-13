@@ -74,3 +74,26 @@ function obtenerdatos(){
 const boton = document.getElementById("boton")
 const tabla = document.getElementById("tabla")
 boton.addEventListener("click", obtenerdatos)
+
+// Logout handler
+const logoutBtn = document.getElementById('logoutBtn');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', async () => {
+        const token = localStorage.getItem('api_token');
+        try {
+            if (token) {
+                await fetch('http://localhost:8000/api/logout', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    }
+                });
+            }
+        } catch (err) {
+            console.error('Error during logout request', err);
+        }
+        localStorage.removeItem('api_token');
+        window.location.href = './login.html';
+    });
+}

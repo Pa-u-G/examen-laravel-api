@@ -12,7 +12,10 @@
         <!-- Header con Flex -->
         <header class="header-flex">
             <h1 class="titulo-fluido">Panel de productos</h1>
-            <button id="boton" class="btn-moderno">Cargar productos</button>
+            <div style="display:flex;gap:8px;align-items:center;">
+                <button id="boton" class="btn-moderno">Cargar productos</button>
+                <button id="logoutBtn" class="btn-moderno" style="background:#ef4444">Cerrar sesión</button>
+            </div>
         </header>
 
         <!-- Main: tabla + demo de auto-fit/minmax -->
@@ -38,5 +41,6 @@
     </div>
 
     <script src="test.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>
