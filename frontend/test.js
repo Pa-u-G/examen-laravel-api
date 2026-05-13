@@ -78,7 +78,6 @@ if (boton) {
     boton.addEventListener("click", obtenerdatos)
 }
 
-// Logout handler
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {

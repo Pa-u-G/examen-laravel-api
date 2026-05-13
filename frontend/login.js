@@ -56,8 +56,6 @@ form.addEventListener('submit', async (e) => {
 
     // Guardamos token en localStorage
     if (data.token) {
-      // Guardamos token y además lo pasamos por querystring para soportar casos donde
-      // el frontend se sirva por file:// o desde otro origen y localStorage no se comparta.
       localStorage.setItem('api_token', data.token);
       showMessage('Login correcto. Redirigiendo...', 'success');
       // Redirige a test.html (protegida) pasando token en la query

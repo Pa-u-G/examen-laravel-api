@@ -1,32 +1,19 @@
-// auth.js — valida token y fuerza redirect a login si es necesario
-// auth.js — valida token y fuerza redirect a login si es necesario
-// Nota: ahora solo ejecuta la comprobación automática si el <body> tiene el atributo
-// `data-protected` para permitir que páginas públicas (ej. index.html) incluyan
-// el script sin provocar una redirección.
 (async function(){
-    // Solo correr si la página opta por protección
-    if (!document.body || !document.body.hasAttribute('data-protected')) {
-        return; // no es una página protegida
-    }
+    if (!document.body || !document.body.hasAttribute('data-protected')) return;
 
-    const API_BASE = 'http://localhost:8000'; // ajusta si tu backend usa otra URL
+    const API_BASE = 'http://localhost:8000';
 
-    // Si el token viene en la query (redirigido desde login), lo guardamos y limpiamos la URL
     const params = new URLSearchParams(window.location.search);
     const tokenFromQuery = params.get('token');
     if (tokenFromQuery) {
         localStorage.setItem('api_token', tokenFromQuery);
-        // quitamos el token de la URL sin recargar la página
         params.delete('token');
         const newUrl = window.location.origin + window.location.pathname + (params.toString() ? '?' + params.toString() : '');
         window.history.replaceState({}, document.title, newUrl);
     }
 
     const token = localStorage.getItem('api_token');
-    if (!token) {
-        window.location.href = './login.html';
-        return;
-    }
+    if (!token) { window.location.href = './login.html'; return; }
 
     try {
         const res = await fetch(API_BASE + '/api/user', {
