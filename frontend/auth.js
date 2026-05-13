@@ -1,5 +1,14 @@
 // auth.js — valida token y fuerza redirect a login si es necesario
+// auth.js — valida token y fuerza redirect a login si es necesario
+// Nota: ahora solo ejecuta la comprobación automática si el <body> tiene el atributo
+// `data-protected` para permitir que páginas públicas (ej. index.html) incluyan
+// el script sin provocar una redirección.
 (async function(){
+    // Solo correr si la página opta por protección
+    if (!document.body || !document.body.hasAttribute('data-protected')) {
+        return; // no es una página protegida
+    }
+
     const API_BASE = 'http://localhost:8000'; // ajusta si tu backend usa otra URL
 
     // Si el token viene en la query (redirigido desde login), lo guardamos y limpiamos la URL
